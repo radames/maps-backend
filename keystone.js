@@ -15,7 +15,7 @@ keystone.init({
 	'name': 'Map App',
 	'brand': 'Map App',
 
-	// 'admin path': 'admin',
+	'admin path': 'admin',
 	'sass': 'public',
 	'static': 'public',
 	'favicon': 'public/favicon.ico',

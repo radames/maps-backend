@@ -22,39 +22,74 @@ var Post = new keystone.List('Post', {
 });
 
 Post.add(
-  'Post Basic Info',
+  {
+    heading: 'Post Basic Info'
+  },
   {
     title: { type: String, initial: true, default: '', required: true , label:'Post Title' ,},
     description: { type: Types.Markdown, wysiwyg: true, height: 200 , label:'Post Description',},
     postDate: { type: Types.Datetime, default: Date.now, label: 'Post event date (HH:MM:SS am/pm)'},
-    location: {type: Types.Location, map: true, defaultCenter: { lat: 37.8068101, lng: -122.2698373 },height: 400, required: false, initial: false},
-    isApproved: { type: Types.Boolean, label: 'Approved Post?' },
+    location: {type: Types.Location, map: true, defaultCenter: { lat: 37.8068101, lng: -122.2698373 },height: 400, required: false, initial: false}
   },
-  'Image',
   {
-    imageURL: {type: Types.Url, label: 'Image URL'},
-    imageSource: {type: String, label: 'Image Source'},
-    imageSourceURL: {type: Types.Url, label: 'Image Source URL'}
+    heading: 'Contents'
   },
-  'Instagram',
   {
-    instagramURL: {type: Types.Url, label: 'Instagram URL'},
-    instagramEmbed: {type: Types.Html, height: 80, label: 'Instagram HTML Embed'}
+    hasImage: { type: Types.Boolean, label: 'Image' }
   },
-  'Twitter',
   {
-    twitterURL: {type: Types.Url, label: 'Twitter URL'},
-    twitterEmbed: {type: Types.Html, height: 80, label: 'Twitter HTML Embed'}
+    heading: 'Image', dependsOn: { hasImage: true }
   },
-  'Audio',
   {
-    audioURL: {type: Types.Url, label: 'Audio URL'},
-    audioEmbed: {type: Types.Html, height: 80, label: 'Audio HTML Embed'}
+    imageURL: {type: Types.Url, label: 'Image URL', dependsOn: { hasImage: true }},
+    imageSource: {type: String, label: 'Image Source', dependsOn: { hasImage: true }},
+    imageSourceURL: {type: Types.Url, label: 'Image Source URL', dependsOn: { hasImage: true }}
   },
-  'Video',
   {
-    videoURL: {type: Types.Url, label: 'Video URL'},
-    videoEmbed: {type: Types.Html, height: 80, label: 'Video HTML Embed'}
+    hasInstagram: { type: Types.Boolean, label: 'Instagram' }
+  },
+  {
+    heading: 'Instagram', dependsOn: { hasInstagram: true }
+  },
+  {
+    instagramURL: {type: Types.Url, label: 'Instagram URL', dependsOn: { hasInstagram: true }},
+    instagramEmbed: {type: Types.Html, height: 80, label: 'Instagram HTML Embed', dependsOn: { hasInstagram: true }}
+  },
+  {
+    hasTwitter: { type: Types.Boolean, label: 'Twitter' }
+  },
+  {
+    heading: 'Twitter', dependsOn: { hasTwitter: true }
+  },
+  {
+    twitterURL: {type: Types.Url, label: 'Twitter URL',  dependsOn: { hasTwitter: true } },
+    twitterEmbed: {type: Types.Html, height: 80, label: 'Twitter HTML Embed',  dependsOn: { hasTwitter: true } }
+  },
+  {
+    hasAudio: { type: Types.Boolean, label: 'Audio' }
+  },
+  {
+    heading: 'Audio', dependsOn: { hasAudio: true }
+  },
+  {
+    audioURL: {type: Types.Url, label: 'Audio URL', dependsOn: { hasAudio: true }},
+    audioEmbed: {type: Types.Html, height: 80, label: 'Audio HTML Embed', dependsOn: { hasAudio: true }}
+  },
+  {
+    hasVideo: { type: Types.Boolean, label: 'Video' }
+  },
+  {
+    heading: 'Video', dependsOn: { hasVideo: true }
+  },
+  {
+    videoURL: {type: Types.Url, label: 'Video URL', dependsOn: { hasVideo: true }},
+    videoEmbed: {type: Types.Html, height: 80, label: 'Video HTML Embed', dependsOn: { hasVideo: true }}
+  },
+  {
+    heading: 'Review'
+  },
+  {
+    isApproved: { type: Types.Boolean, label: 'Approved Post ?' }
   }
 );
 
