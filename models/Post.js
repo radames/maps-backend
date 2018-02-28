@@ -24,10 +24,10 @@ var Post = new keystone.List('Post', {
 Post.add(
   'Post Basic Info',
   {
-    title: { type: String, initial: true, default: '', required: true , label:'Post Title - slug type - unique' ,},
+    title: { type: String, initial: true, default: '', required: true , label:'Post Title' ,},
     description: { type: Types.Markdown, wysiwyg: true, height: 200 , label:'Post Description',},
     postDate: { type: Types.Datetime, default: Date.now, label: 'Post event date (HH:MM:SS am/pm)'},
-    location: {type: Types.Location, map: true, defaultCenter: { lat: 37.8068101, log: -122.2698373 },height: 400, required: false, initial: false},
+    location: {type: Types.Location, map: true, defaultCenter: { lat: 37.8068101, lng: -122.2698373 },height: 400, required: false, initial: false},
     isApproved: { type: Types.Boolean, label: 'Approved Post?' },
   },
   'Image',
