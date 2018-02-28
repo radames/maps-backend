@@ -97,5 +97,5 @@ Post.add(
  * Registration
  */
 
-Post.defaultColumns = "title";
+Post.defaultColumns = "title, hasImage, hasTwitter, hasInstagram, hasAudio, hasVideo, isApproved";
 Post.register();
