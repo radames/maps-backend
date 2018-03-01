@@ -1,0 +1,26 @@
+extends ../layouts/default
+
+block content
+	.container
+		.row
+			.col-md-5
+				h1 Posts List
+				if posts.data
+					each post in posts.data
+						div
+							h2= post.title
+							!= post.description.html
+							if post.hasImage
+								img.img-responsive(src=post.imageURL)
+							if post.hasVideo
+								div
+									!=post.videoEmbed
+							if post.hasInstagram
+								div
+									!=post.instagramEmbed
+							if post.hasTwitter
+								div
+									!=post.twitterEmbed
+							if post.hasAudio
+								audio(preload="auto", autobuffer, controls)
+									source(src=post.audioURL)

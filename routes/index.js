@@ -17,4 +17,5 @@ exports = module.exports = function (app) {
 	// Views
 	app.get('/', routes.views.index);
 	app.get('/api/posts', [keystone.middleware.api], routes.api.app.posts);
+	app.get('/posts/', middleware.requireUser, routes.views.posts);
 };
