@@ -7,6 +7,8 @@ var async = require('async');
  */
 
 exports.posts = function(req, res) {
+	console.log(req.params);
+	var bshowAll = (req.params.pshowAll == 'all');
 
 	var posts = {
 		data: []
@@ -14,13 +16,17 @@ exports.posts = function(req, res) {
 	// Load the posts
 	var q = Task.model.find();
 
-	q.find({
-		$or: [{
-			"isApproved": {
-				"$eq": true
-			}
-		}]
-	});
+	if(bshowAll){
+		q.find();
+	}else{
+		q.find({
+			$or: [{
+				"isApproved": {
+					"$eq": true
+				}
+			}]
+		});
+	}
 
 	q.sort('postDate');
 	q.exec(function(err, results) {
