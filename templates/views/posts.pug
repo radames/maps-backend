@@ -3,7 +3,7 @@ extends ../layouts/default
 block content
 	.container
 		.row
-			.col-md-5
+			.col-xs-6.col-md-6
 				h1 Posts List
 				if posts.data
 					each post in posts.data
@@ -13,14 +13,11 @@ block content
 							if post.hasImage
 								img.img-responsive(src=post.imageURL)
 							if post.hasVideo
-								div
-									!=post.videoEmbed
+								!=post.videoEmbed
 							if post.hasInstagram
-								div
-									!=post.instagramEmbed
+								!=post.instagramEmbed
 							if post.hasTwitter
-								div
-									!=post.twitterEmbed
+								!=post.twitterEmbed
 							if post.hasAudio
 								audio(preload="auto", autobuffer, controls)
 									source(src=post.audioURL)
