@@ -76,6 +76,7 @@ exports.posts = function(req, res) {
 				description: post.decription,
 				date: post.date,
 				geo: post.location,
+				marker: post.marker ? post.marker : 'default',
 				social: social
 			});
 		});
