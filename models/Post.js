@@ -29,8 +29,14 @@ Post.add(
     title: { type: String, initial: true, default: '', required: true , label:'Post Title' ,},
     description: { type: Types.Markdown, wysiwyg: true, height: 200 , label:'Post Description',},
     postDate: { type: Types.Datetime, default: Date.now, label: 'Post event date (HH:MM:SS am/pm)'},
-    location: {type: Types.Location, map: true, defaultCenter: { lat: 37.8068101, lng: -122.2698373 },height: 400, required: false, initial: false}
-  },
+    location: {type: Types.Location, map: true, defaultCenter: { lat: 37.8068101, lng: -122.2698373 },height: 400, required: false, initial: false},
+		marker: { type: Types.Select, label:'Map Marker Type', options: [
+			{ value: 'yr-marker', label: 'Youth Radio Content', custom: 'value' },
+      { value: 'pre-marker', label: 'Pre-March (Before March 14)' },
+			{ value: 'student-marker', label: 'Student Walkout (March 14)' },
+			{ value: 'national-marker', label: 'National March (March 23)' }
+		]}
+	},
   {
     heading: 'Contents'
   },
