@@ -15,7 +15,6 @@ var Post = new keystone.List('Post', {
 		name: 'title'
 	},
 	sortable: true,
-  //defaultSort:'-createdAt', // sorted by createdAt
   label : 'Post',
   singular: 'Post',
   plural: 'Posts'
@@ -111,6 +110,6 @@ Post.add(
 /**
  * Registration
  */
-
-Post.defaultColumns = "title, hasImage, hasTwitter, hasInstagram, hasAudio, hasVideo, isApproved";
+Post.defaultSort = "sortOrder";
+Post.defaultColumns = "title, chapterContent|20%, hasImage, hasTwitter, hasInstagram, hasAudio, hasVideo, isApproved";
 Post.register();

@@ -28,7 +28,7 @@ exports.posts = function(req, res) {
 		});
 	}
 
-	q.sort('postDate');
+	q.sort('sortOrder');
 	q.exec(function(err, results) {
 		if (err) return res.apiError('database error - searching tasks', err);
 
