@@ -29,7 +29,7 @@ exports.posts = function(req, res) {
 	}
 
 	q.sort('sortOrder');
-	q.exec(function(err, results) {
+	q.populate('category').exec(function(err, results) {
 		if (err) return res.apiError('database error - searching tasks', err);
 
 		results.forEach(post => {
@@ -74,10 +74,9 @@ exports.posts = function(req, res) {
 				slug: post.slug,
 				title: post.title,
 				description: post.description,
-				chapter: post.hasChapter ? post.chapterContent : null,
+				category: post.category ? post.category.key: null,
 				date: post.date,
 				geo: post.location,
-				marker: post.marker ? post.marker : 'default',
 				social: social
 			});
 		});
