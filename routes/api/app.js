@@ -73,7 +73,8 @@ exports.posts = function(req, res) {
 			posts.data.push({
 				slug: post.slug,
 				title: post.title,
-				description: post.decription,
+				description: post.description,
+				chapter: post.hasChapter ? post.chapterContent : null,
 				date: post.date,
 				geo: post.location,
 				marker: post.marker ? post.marker : 'default',

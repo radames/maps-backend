@@ -40,6 +40,15 @@ Post.add(
   {
     heading: 'Contents'
   },
+	{
+		hasChapter: { type: Types.Boolean, label: 'Chapter Content' }
+	},
+	{
+		heading: 'Chapter Content', dependsOn: { hasChapter: true }
+	},
+	{
+    chapterContent: { type: Types.Markdown, wysiwyg: true, height: 200 , label:'Chapter Content', dependsOn: { hasChapter: true }}
+	},
   {
     hasImage: { type: Types.Boolean, label: 'Image' }
   },
