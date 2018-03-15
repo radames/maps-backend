@@ -11,8 +11,8 @@ exports.posts = function(req, res) {
 	console.log(req.params);
 	var bshowAll = (req.params.pshowAll == 'all');
 
-	var posts = {
-		data: [],
+	var data = {
+		posts: [],
 		categories: []
 	};
 
@@ -21,7 +21,7 @@ exports.posts = function(req, res) {
 		if (err) return res.apiError('database error - searching tasks', err);
 
 		results.forEach(category =>{
-			posts.categories.push({
+			data.categories.push({
 				key: category.key,
 				title: category.name,
 				body: category.categoryContent
@@ -84,7 +84,7 @@ exports.posts = function(req, res) {
 						source: post.imageSourceURL
 					});
 				}
-				posts.data.push({
+				data.posts.push({
 					slug: post.slug,
 					title: post.title,
 					description: post.description,
@@ -94,7 +94,7 @@ exports.posts = function(req, res) {
 					social: social
 				});
 			});
-			res.apiResponse(posts);
+			res.apiResponse(data);
 
 		}).catch(error => {
 			res.apiError('database error - loanding posts filter', err);
