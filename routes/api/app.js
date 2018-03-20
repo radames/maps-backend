@@ -7,6 +7,32 @@ var fetch = require("node-fetch");
 /**
  * get all posts approved
  */
+
+
+ exports.getSocialData = function(req, res) {
+
+ 	var q = Post.model.find();
+ 	q.sort('sortOrder');
+ 	q.exec(function(err, results) {
+ 		if (err) return res.apiError('database error - searching tasks', err);
+
+		var social = {
+			instagram: [],
+			twitter: ["Twitter Users: "]
+		};
+ 		results.forEach(post => {
+	 			if (post.hasTwitter) {
+	 				social.twitter.push("@" + post.twitterURL.split('/')[3]);
+				}
+		});
+		res.set('Content-Type', 'text/plain');
+ 		res.end(social.twitter.join("\n"));
+
+ 	}).catch(error => {
+ 		res.apiError('Error loading handles', err);
+ 	});
+ }
+
 exports.twitter = function(req, res) {
 	var user = req.params.user;
 	var url = `https://twitter.com/${user}/profile_image?size=bigger`;
