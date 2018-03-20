@@ -2,10 +2,25 @@ var keystone = require('keystone');
 var Task = keystone.list('Post');
 var Category = keystone.list('Category');
 var async = require('async');
+var fetch = require("node-fetch");
 
 /**
  * get all posts approved
  */
+
+exports.twitter = function(req, res) {
+	var user = req.params.user;
+	var url = `https://twitter.com/${user}/profile_image?size=bigger`;
+
+	fetch(url)
+  .then(response => {
+			res.writeHead(302, {location: response.url });
+			res.end();
+  })
+  .catch(error => {
+		res.apiError('Error getting twitter profile', error);
+  });
+}
 
 exports.posts = function(req, res) {
 	console.log(req.params);
