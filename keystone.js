@@ -26,7 +26,7 @@ keystone.init({
 	'auth': true,
 	'user model': 'User',
 	'cookie secret': process.env.COOKIE_SECRET,
-
+	'cors allow origin': true
 });
 
 // Load your project's Models
