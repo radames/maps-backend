@@ -1,5 +1,5 @@
 var keystone = require('keystone');
-var Task = keystone.list('Post');
+var Post = keystone.list('Post');
 var Category = keystone.list('Category');
 var async = require('async');
 var fetch = require("node-fetch");
@@ -7,7 +7,6 @@ var fetch = require("node-fetch");
 /**
  * get all posts approved
  */
-
 exports.twitter = function(req, res) {
 	var user = req.params.user;
 	var url = `https://twitter.com/${user}/profile_image?size=bigger`;
@@ -43,7 +42,7 @@ exports.posts = function(req, res) {
 			});
 		});
 		// Load the posts
-		var q = Task.model.find();
+		var q = Post.model.find();
 
 		if (bshowAll) {
 			q.find();
