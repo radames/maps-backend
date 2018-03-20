@@ -12,6 +12,14 @@ var fetch = require("node-fetch");
  exports.getSocialData = function(req, res) {
 
  	var q = Post.model.find();
+
+	q.find({
+		$or: [{
+			"isApproved": {
+				"$eq": true
+			}
+		}]
+	});
  	q.sort('sortOrder');
  	q.exec(function(err, results) {
  		if (err) return res.apiError('database error - searching tasks', err);
