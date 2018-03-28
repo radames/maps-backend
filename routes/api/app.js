@@ -65,13 +65,14 @@ exports.posts = function(req, res) {
 	};
 
 	//load Categories data
-	Category.model.find().sort('name').exec(function(err, results) {
+	Category.model.find().sort('sortOrder').exec(function(err, results) {
 		if (err) return res.apiError('database error - searching tasks', err);
 
 		results.forEach(category =>{
 			data.categories.push({
 				key: category.key,
 				title: category.name,
+				menu: category.title,
 				body: category.categoryContent
 			});
 		});
